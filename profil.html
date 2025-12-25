@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | M. Mudriqullah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            /* Agar saat klik menu, judul tidak tertutup navbar */
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            background-color: #0f172a; 
+            color: #f8fafc;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER / NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            background: rgba(15, 23, 42, 0.8); /* Transparan */
+            backdrop-filter: blur(10px); /* Efek Blur Mewah */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px; /* Sedikit disesuaikan agar muat banyak menu */
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #f8fafc;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            opacity: 0.8;
+        }
+
+        nav ul li a:hover {
+            opacity: 1;
+            color: #60a5fa;
+        }
+
+        /* --- SECTION TITLES --- */
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        section {
+            padding: 100px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            text-align: center;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            padding-top: 150px;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 30px;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        .glow {
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            z-index: 1;
+            filter: blur(20px);
+            animation: glowing 20s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        .hero-text h1 { font-size: 3.5rem; margin-bottom: 10px; font-weight: 700; }
+        .hero-text p { font-size: 1.3rem; color: #94a3b8; max-width: 700px; margin: 0 auto; }
+
+        /* --- TENTANG SAYA --- */
+        .about-content {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 5px solid #60a5fa;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* --- GRID & CARDS --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-20px); 
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #60a5fa;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(96, 165, 250, 0.2);
+        }
+
+        .tech-card img {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 15px;
+        }
+
+        .tech-card p {
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-top: 10px;
+        }
+
+        /* --- GRADIENT ICONS FOR HOBBIES --- */
+        .hobi-icon {
+            background: linear-gradient(45deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .icon-gaming { background-image: linear-gradient(45deg, #8b5cf6, #ec4899); }
+        .icon-sport { background-image: linear-gradient(45deg, #34d399, #3b82f6); }
+        .icon-volly { background-image: linear-gradient(45deg, #facc15, #fb923c); }
+
+        /* --- PROJECT SECTION --- */
+        .project-card {
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        /* --- CONTACT FORM --- */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: white;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #60a5fa;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            border: none;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            header { padding: 15px 5%; }
+            nav ul { gap: 15px; }
+            nav ul li a { font-size: 0.85rem; }
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; } /* Menu disembunyikan di HP agar tidak berantakan */
+            .hero-text h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#hero" class="logo">M. Mudriqullah</a>
+        <nav>
+            <ul>
+                <li><a href="#about">Tentang Saya</a></li>
+                <li><a href="#tech">Teknologi</a></li>
+                <li><a href="#hobbies">Hobi & Minat</a></li> <li><a href="#projects">Proyek</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="profile-container">
+            <div class="glow"></div>
+            <img src="images/Rico.jpg" alt="Foto M. Mudriqullah" class="profile-pic">
+        </div>
+        <div class="hero-text">
+            <h1>M. Mudriqullah</h1>
+            <p>Web Developer Pemula | Mahasiswa Pendidikan Teknologi Informasi</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>Tentang Saya</h2>
+        <div class="about-content">
+            <p>Saya adalah alumni SMK dengan jurusan <b>Teknik Komputer dan Jaringan (TKJ)</b>. Memiliki pengalaman magang di kantor desa yang mengasah kemampuan administratif dan teknis saya. <br><br>
+            Saat ini, saya sedang menempuh pendidikan Strata 1 (S1) pada program studi <b>Pendidikan Teknologi Informasi</b>. Fokus saya belakangan ini adalah mendalami pengembangan perangkat lunak, khususnya dalam pembuatan website dan aplikasi, demi menciptakan solusi digital yang bermanfaat.</p>
+        </div>
+    </section>
+
+    <section id="tech">
+        <h2>Teknologi Yang Saya Kuasai</h2>
+        <div class="grid-container">
+            <div class="card tech-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                <p>HTML5</p>
+            </div>
+            <div class="card tech-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                <p>CSS3</p>
+            </div>
+            <div class="card tech-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS">
+                <p>JavaScript</p>
+            </div>
+            <div class="card tech-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
+                <p>PHP</p>
+            </div>
+            <div class="card tech-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel">
+                <p>Laravel</p>
+            </div>
+            <div class="card tech-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+                <p>MySQL</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="hobbies">
+        <h2>Hobi & Minat</h2>
+        <div class="grid-container">
+            <div class="card tech-card">
+                <i class="fas fa-gamepad fa-4x hobi-icon icon-gaming"></i>
+                <p>GAMING</p>
+            </div>
+            <div class="card tech-card">
+                <i class="fas fa-running fa-4x hobi-icon icon-sport"></i>
+                <p>OLAHRAGA</p>
+            </div>
+            <div class="card tech-card">
+                <i class="fas fa-volleyball-ball fa-4x hobi-icon icon-volly"></i>
+                <p>VOLLY BALL</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Proyek Saya</h2>
+        <div class="grid-container">
+            <div class="card project-card">
+                <img src="images/WEB.png" alt="proyek 1" class="project-img">
+                <div class="project-info">
+                    <h3>Sistem Informasi Desa</h3>
+                    <p>Web manajemen data penduduk sederhana untuk kantor desa.</p>
+                </div>
+            </div>
+            <div class="card project-card">
+                 <img src="images/WEBSITE.png" alt="proyek 2" class="project-img">
+                <div class="project-info">
+                    <h3>Website Penjualan</h3>
+                    <p>Eksperimen desain web modern menggunakan HTML, CSS, dan JS.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Hubungi Saya</h2>
+        <div class="contact-form">
+            <form>
+                <input type="text" placeholder="Nama Lengkap" required>
+                <input type="email" placeholder="Email Aktif" required>
+                <textarea rows="5" placeholder="Tuliskan pesan Anda di sini..."></textarea>
+                <button type="submit">Kirim Sekarang</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>
